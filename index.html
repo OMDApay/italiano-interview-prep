@@ -1,0 +1,1167 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مرشدك للإيطالية - الاختبار الشفوي</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Cairo:wght@300;400;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #009246;
+    --white: #f8f5ee;
+    --red: #ce2b37;
+    --gold: #c8a84b;
+    --dark: #1a1208;
+    --card-bg: #fffdf5;
+    --shadow: rgba(0,0,0,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--dark);
+    color: var(--dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* === HERO === */
+  .hero {
+    background: linear-gradient(135deg, #009246 0%, #1a6e38 40%, #0d4a22 60%, #8b1a1a 80%, #ce2b37 100%);
+    padding: 60px 30px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '🇮🇹';
+    position: absolute;
+    font-size: 300px;
+    opacity: 0.05;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(200,168,75,0.2);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 6px 20px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--white);
+    margin-bottom: 10px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+  .hero-sub {
+    color: rgba(255,255,255,0.75);
+    font-size: 1.05rem;
+    margin-bottom: 30px;
+  }
+  .countdown {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 12px 28px;
+    border-radius: 50px;
+    color: white;
+    font-size: 1.1rem;
+  }
+  .countdown span { color: var(--gold); font-weight: 700; font-size: 1.4rem; }
+
+  /* === NAV TABS === */
+  .tabs-wrapper {
+    background: #111;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 3px 20px rgba(0,0,0,0.5);
+  }
+  .tabs {
+    display: flex;
+    overflow-x: auto;
+    gap: 0;
+    padding: 0 10px;
+    scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    flex-shrink: 0;
+    padding: 16px 22px;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.5);
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .tab-btn:hover { color: white; }
+  .tab-btn.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
+  /* === MAIN CONTENT === */
+  .main { background: #f0ece0; padding: 40px 20px 80px; min-height: 70vh; }
+  .section { display: none; max-width: 960px; margin: 0 auto; }
+  .section.active { display: block; animation: fadeIn 0.4s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--dark);
+    margin-bottom: 8px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid var(--green);
+  }
+  .section-desc { color: #555; font-size: 0.95rem; margin-bottom: 30px; }
+
+  /* === PHRASE CARDS === */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 18px;
+    margin-bottom: 40px;
+  }
+
+  .phrase-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 20px var(--shadow);
+    border: 1px solid rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .phrase-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--accent, var(--green));
+  }
+  .phrase-card:hover { transform: translateY(-4px); box-shadow: 0 10px 35px rgba(0,0,0,0.15); }
+
+  .card-priority {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .priority-high { background: #fff0f0; color: var(--red); }
+  .priority-med { background: #fff8e6; color: #c67c00; }
+  .priority-low { background: #f0f9f4; color: var(--green); }
+
+  .card-italian {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: #1a1a2e;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .card-pronunciation {
+    font-size: 0.82rem;
+    color: var(--green);
+    font-style: italic;
+    margin-bottom: 8px;
+    direction: ltr;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .card-arabic {
+    font-size: 0.95rem;
+    color: #444;
+    margin-bottom: 14px;
+    font-weight: 600;
+  }
+
+  .card-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .speak-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--green);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 600;
+    transition: all 0.2s;
+    flex: 1;
+    justify-content: center;
+  }
+  .speak-btn:hover { background: #007a38; transform: scale(1.03); }
+  .speak-btn.speaking {
+    background: var(--red);
+    animation: pulse 0.8s ease infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.6; } }
+
+  .fav-btn {
+    background: none;
+    border: 1.5px solid #ddd;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    color: #ccc;
+  }
+  .fav-btn.active { border-color: #ff6b6b; color: #ff6b6b; }
+  .fav-btn:hover { border-color: #ff6b6b; }
+
+  /* === VOCAB TABLE === */
+  .vocab-section { margin-bottom: 40px; }
+  .vocab-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 16px;
+    padding: 10px 16px;
+    background: white;
+    border-radius: 10px;
+    border-right: 4px solid var(--green);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 10px;
+  }
+  .vocab-item {
+    background: white;
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transition: transform 0.15s;
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+  .vocab-item:hover { transform: translateX(-4px); }
+  .vocab-speak {
+    background: none;
+    border: 2px solid var(--green);
+    color: var(--green);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  .vocab-speak:hover { background: var(--green); color: white; }
+  .vocab-speak.speaking { background: var(--red); border-color: var(--red); color: white; }
+  .vocab-text { flex: 1; min-width: 0; }
+  .vocab-it { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.95rem; color: #1a3a6b; }
+  .vocab-pron { font-size: 0.72rem; color: var(--green); font-style: italic; }
+  .vocab-ar { font-size: 0.85rem; color: #555; margin-top: 2px; }
+
+  /* === DIALOGUE === */
+  .dialogue-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .dialogue-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: white;
+    background: var(--green);
+    display: inline-block;
+    padding: 5px 18px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .dialogue-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding: 14px;
+    border-radius: 10px;
+    background: #f8f5ee;
+    border-right: 3px solid transparent;
+  }
+  .dialogue-line.q { border-right-color: var(--green); }
+  .dialogue-line.a { border-right-color: var(--red); background: #fff9f9; }
+
+  .line-role {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    flex-shrink: 0;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .role-q { background: #e8f5ec; color: var(--green); }
+  .role-a { background: #fde8e8; color: var(--red); }
+  .line-content { flex: 1; }
+  .line-italian { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: #1a1a3a; }
+  .line-pron { font-size: 0.78rem; color: var(--green); font-style: italic; direction: ltr; text-align: left; }
+  .line-arabic { font-size: 0.88rem; color: #555; margin-top: 4px; }
+  .line-speak {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--green);
+    font-size: 1.1rem;
+    padding: 5px;
+    border-radius: 50%;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .line-speak:hover { background: #e8f5ec; }
+  .line-speak.speaking { color: var(--red); animation: pulse 0.8s infinite; }
+
+  /* === TIPS BOX === */
+  .tips-box {
+    background: linear-gradient(135deg, #009246, #007a38);
+    color: white;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 30px;
+  }
+  .tips-box h3 { font-size: 1.1rem; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .tips-box ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .tips-box li { display: flex; gap: 10px; font-size: 0.9rem; line-height: 1.6; }
+  .tips-box li::before { content: '✓'; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+
+  /* === SEARCH === */
+  .search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .search-input {
+    flex: 1;
+    padding: 13px 20px;
+    border: 2px solid #ddd;
+    border-radius: 30px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+    background: white;
+  }
+  .search-input:focus { border-color: var(--green); }
+
+  /* === QUIZ === */
+  .quiz-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 6px 30px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .quiz-question {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: #1a1a2e;
+    margin: 20px 0;
+    padding: 20px;
+    background: #f8f5ee;
+    border-radius: 12px;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .quiz-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .quiz-opt {
+    padding: 14px;
+    border: 2px solid #e0ddd5;
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.9rem;
+    background: white;
+    transition: all 0.2s;
+    text-align: center;
+    font-weight: 600;
+  }
+  .quiz-opt:hover { border-color: var(--green); background: #f0faf4; }
+  .quiz-opt.correct { background: #e8f5ec; border-color: var(--green); color: var(--green); }
+  .quiz-opt.wrong { background: #fde8e8; border-color: var(--red); color: var(--red); }
+  .quiz-score {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+  }
+  .score-item { text-align: center; }
+  .score-num { font-size: 2rem; font-weight: 700; color: var(--green); font-family: 'Playfair Display', serif; }
+  .score-label { font-size: 0.8rem; color: #888; }
+  .quiz-btn {
+    background: var(--green);
+    color: white;
+    border: none;
+    padding: 13px 35px;
+    border-radius: 30px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .quiz-btn:hover { background: #007a38; transform: scale(1.03); }
+
+  /* === PROGRESS BAR === */
+  .progress-bar-wrap {
+    background: rgba(255,255,255,0.15);
+    border-radius: 30px;
+    height: 6px;
+    margin: 15px 0 5px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    background: var(--gold);
+    border-radius: 30px;
+    transition: width 0.5s ease;
+  }
+
+  /* === IMG CARDS === */
+  .img-vocab {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .vocab-emoji { font-size: 2rem; width: 48px; text-align: center; flex-shrink: 0; }
+
+  /* === SEPARATOR === */
+  .sep {
+    text-align: center;
+    color: #aaa;
+    font-size: 0.8rem;
+    margin: 30px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .sep::before, .sep::after { content: ''; flex: 1; height: 1px; background: #ddd; }
+
+  .tag-new {
+    display: inline-block;
+    background: var(--red);
+    color: white;
+    font-size: 0.65rem;
+    padding: 2px 7px;
+    border-radius: 8px;
+    font-weight: 700;
+    margin-right: 6px;
+    vertical-align: middle;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  /* Responsive */
+  @media(max-width: 600px) {
+    .cards-grid { grid-template-columns: 1fr; }
+    .quiz-options { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 1.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">🇮🇹 ITALIANO · اللغة الإيطالية</div>
+  <h1>مرشدك لاجتياز الاختبار</h1>
+  <p class="hero-sub">الكلمات والجمل الأكثر أهمية في اختبار المحادثة — مع النطق الصوتي والصور</p>
+  <div class="countdown">⏳ متبقي <span>20</span> يوماً — ابدأ الآن!</div>
+  <div class="progress-bar-wrap" style="margin-top:20px;max-width:400px;margin-inline:auto;">
+    <div class="progress-bar" id="globalProgress" style="width:0%"></div>
+  </div>
+  <p style="color:rgba(255,255,255,0.5);font-size:0.75rem;margin-top:5px;" id="progressLabel">0 كلمة محفوظة</p>
+</div>
+
+<!-- TABS -->
+<div class="tabs-wrapper">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showSection('greetings',this)">👋 التحية</button>
+    <button class="tab-btn" onclick="showSection('intro',this)">🙋 التعريف</button>
+    <button class="tab-btn" onclick="showSection('work',this)">💼 العمل</button>
+    <button class="tab-btn" onclick="showSection('education',this)">🎓 التعليم</button>
+    <button class="tab-btn" onclick="showSection('family',this)">👨‍👩‍👧 العائلة</button>
+    <button class="tab-btn" onclick="showSection('common',this)">💬 جمل يومية</button>
+    <button class="tab-btn" onclick="showSection('vocab',this)">📚 مفردات</button>
+    <button class="tab-btn" onclick="showSection('quiz',this)">🎮 اختبر نفسك</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ============ GREETINGS ============ -->
+<div class="section active" id="greetings">
+  <div class="section-title">التحية والتعارف الأول</div>
+  <p class="section-desc">⭐ هذه أهم الجمل — ستستخدمها في أول 30 ثانية من أي محادثة أو مقابلة</p>
+
+  <div class="tips-box">
+    <h3>💡 نصيحة المحادثة</h3>
+    <ul>
+      <li>ابدأ دائماً بـ "Buongiorno" في الصباح أو "Buonasera" في المساء — لا "Ciao" مع الغرباء</li>
+      <li>الابتسامة + النظر في العين = انطباع أول ممتاز</li>
+      <li>بعد التحية، قل "Piacere di conoscerti" بثقة</li>
+    </ul>
+  </div>
+
+  <div class="cards-grid" id="greetingsGrid"></div>
+
+  <div class="sep">جمل إضافية مقترحة</div>
+
+  <div class="cards-grid" id="greetingsExtra"></div>
+</div>
+
+<!-- ============ INTRO ============ -->
+<div class="section" id="intro">
+  <div class="section-title">التعريف بالنفس</div>
+  <p class="section-desc">أسئلة "من أنت؟" هي الأكثر شيوعاً — تدرّب عليها حتى تصبح تلقائية</p>
+
+  <div class="tips-box">
+    <h3>🎯 أسئلة المقابلة المتوقعة</h3>
+    <ul>
+      <li>Come ti chiami? — ما اسمك؟</li>
+      <li>Di dove sei? — من أين أنت؟</li>
+      <li>Quanti anni hai? — كم عمرك؟</li>
+      <li>Dove vivi? — أين تسكن؟</li>
+    </ul>
+  </div>
+
+  <div class="cards-grid" id="introGrid"></div>
+</div>
+
+<!-- ============ WORK ============ -->
+<div class="section" id="work">
+  <div class="section-title">العمل والمهنة</div>
+  <p class="section-desc">من أكثر محاور المقابلة شيوعاً — تعلم كيف تصف عملك ومجالك</p>
+
+  <div class="tips-box">
+    <h3>💼 أسئلة العمل المتوقعة</h3>
+    <ul>
+      <li>Che lavoro fai? — ماذا تعمل؟</li>
+      <li>Dove lavori? — أين تعمل؟</li>
+      <li>Da quanto tempo lavori lì? — منذ متى تعمل هناك؟</li>
+    </ul>
+  </div>
+
+  <div class="cards-grid" id="workGrid"></div>
+</div>
+
+<!-- ============ EDUCATION ============ -->
+<div class="section" id="education">
+  <div class="section-title">التعليم والدراسة</div>
+  <p class="section-desc">مهم جداً إذا كنت طالباً أو تتحدث عن خلفيتك الأكاديمية</p>
+
+  <div class="cards-grid" id="educationGrid"></div>
+</div>
+
+<!-- ============ FAMILY ============ -->
+<div class="section" id="family">
+  <div class="section-title">العائلة والعلاقات</div>
+  <p class="section-desc">موضوع محبوب في المحادثات — يساعدك على التواصل الإنساني مع المحاور</p>
+
+  <div class="cards-grid" id="familyGrid"></div>
+</div>
+
+<!-- ============ COMMON ============ -->
+<div class="section" id="common">
+  <div class="section-title">جمل يومية أساسية</div>
+  <p class="section-desc">هذه الجمل ستنقذك في أي موقف — احفظها جيداً</p>
+
+  <div class="cards-grid" id="commonGrid"></div>
+
+  <div class="sep">حوارات كاملة</div>
+
+  <div id="dialogues"></div>
+</div>
+
+<!-- ============ VOCAB ============ -->
+<div class="section" id="vocab">
+  <div class="section-title">المفردات الأساسية</div>
+  <p class="section-desc">أكثر من 80 كلمة مرتبة حسب الموضوع مع أيقونات توضيحية وصوت</p>
+
+  <div class="search-bar">
+    <input type="text" class="search-input" placeholder="🔍 ابحث عن كلمة..." oninput="filterVocab(this.value)" dir="auto">
+  </div>
+
+  <div id="vocabSections"></div>
+</div>
+
+<!-- ============ QUIZ ============ -->
+<div class="section" id="quiz">
+  <div class="section-title">اختبر نفسك!</div>
+  <p class="section-desc">خمن المعنى العربي للكلمة الإيطالية — اختبار سريع وممتع</p>
+
+  <div class="quiz-card">
+    <div class="quiz-score">
+      <div class="score-item"><div class="score-num" id="qScore">0</div><div class="score-label">✓ صحيح</div></div>
+      <div class="score-item"><div class="score-num" id="qTotal" style="color:#888">0</div><div class="score-label">مجموع</div></div>
+      <div class="score-item"><div class="score-num" id="qStreak" style="color:var(--gold)">0</div><div class="score-label">🔥 متتالي</div></div>
+    </div>
+
+    <div class="quiz-question" id="quizQ">اضغط ابدأ للبدء!</div>
+
+    <div style="text-align:center;margin-bottom:10px;">
+      <button class="speak-btn" style="display:inline-flex;width:auto;" onclick="speakQuizWord()">🔊 استمع</button>
+    </div>
+
+    <div class="quiz-options" id="quizOptions"></div>
+
+    <button class="quiz-btn" id="quizNext" onclick="nextQuestion()">▶ ابدأ الاختبار</button>
+  </div>
+</div>
+
+</div><!-- end main -->
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+const data = {
+
+  greetings: [
+    { it: "Buongiorno!", pron: "bwon-JOR-no", ar: "صباح الخير!", priority:"high" },
+    { it: "Buonasera!", pron: "bwona-SE-ra", ar: "مساء الخير!", priority:"high" },
+    { it: "Ciao!", pron: "chao", ar: "مرحباً! (غير رسمية)", priority:"high" },
+    { it: "Piacere di conoscerti!", pron: "pia-CHE-re di ko-NO-sher-ti", ar: "يسعدني التعرف بك!", priority:"high" },
+    { it: "Come stai?", pron: "KO-me STA-i", ar: "كيف حالك؟ (غير رسمية)", priority:"high" },
+    { it: "Come sta?", pron: "KO-me STA", ar: "كيف حالك؟ (رسمية)", priority:"high" },
+    { it: "Sto bene, grazie!", pron: "sto BE-ne GRA-tsye", ar: "أنا بخير، شكراً!", priority:"high" },
+    { it: "Così così.", pron: "ko-ZI ko-ZI", ar: "لا بأس / هكذا هكذا.", priority:"med" },
+    { it: "Arrivederci!", pron: "arri-ve-DER-chi", ar: "إلى اللقاء! (رسمية)", priority:"high" },
+    { it: "Ciao! A presto!", pron: "chao a-PRES-to", ar: "وداعاً! إلى اللقاء قريباً!", priority:"med" },
+    { it: "Buonanotte!", pron: "bwona-NOT-te", ar: "تصبح على خير!", priority:"med" },
+    { it: "Benvenuto!", pron: "ben-ve-NU-to", ar: "أهلاً وسهلاً!", priority:"med" },
+  ],
+
+  greetingsExtra: [
+    { it: "Mi dispiace arrivare in ritardo.", pron: "mi dis-PIA-che arri-VA-re in ri-TAR-do", ar: "آسف على التأخر.", priority:"med" },
+    { it: "Permesso?", pron: "per-MES-so", ar: "بإذنك / هل يمكنني الدخول؟", priority:"med" },
+    { it: "Prego.", pron: "PRE-go", ar: "تفضل / عفواً.", priority:"high" },
+    { it: "Grazie mille!", pron: "GRA-tsye MIL-le", ar: "شكراً جزيلاً!", priority:"high" },
+  ],
+
+  intro: [
+    { it: "Come ti chiami?", pron: "KO-me ti KYA-mi", ar: "ما اسمك؟", priority:"high" },
+    { it: "Mi chiamo [اسمك].", pron: "mi KYA-mo...", ar: "اسمي ...", priority:"high" },
+    { it: "Sono [اسمك].", pron: "SO-no...", ar: "أنا ...", priority:"high" },
+    { it: "Di dove sei?", pron: "di DO-ve SEI", ar: "من أين أنت؟", priority:"high" },
+    { it: "Sono egiziano/a.", pron: "SO-no e-dji-TSYA-no/a", ar: "أنا مصري/مصرية.", priority:"high" },
+    { it: "Vengo dall'Egitto.", pron: "VEN-go dal-le-JIT-to", ar: "أنا من مصر.", priority:"high" },
+    { it: "Dove vivi?", pron: "DO-ve VI-vi", ar: "أين تسكن؟", priority:"high" },
+    { it: "Vivo al Cairo.", pron: "VI-vo al KA-i-ro", ar: "أسكن في القاهرة.", priority:"high" },
+    { it: "Quanti anni hai?", pron: "KWAN-ti AN-ni AI", ar: "كم عمرك؟", priority:"high" },
+    { it: "Ho [رقم] anni.", pron: "o...AN-ni", ar: "عمري ... سنة.", priority:"high" },
+    { it: "Sono sposato/a.", pron: "SO-no spo-ZA-to/a", ar: "أنا متزوج/متزوجة.", priority:"med" },
+    { it: "Sono single.", pron: "SO-no SIN-gle", ar: "أنا أعزب.", priority:"med" },
+    { it: "Sono fidanzato/a.", pron: "SO-no fi-dan-TSA-to/a", ar: "أنا مخطوب/مخطوبة.", priority:"med" },
+    { it: "Parla italiano?", pron: "PAR-la i-tal-YA-no", ar: "هل تتكلم إيطالية؟", priority:"high" },
+    { it: "Parlo un po' di italiano.", pron: "PAR-lo un po di i-tal-YA-no", ar: "أتكلم قليلاً من الإيطالية.", priority:"high" },
+    { it: "Sto imparando l'italiano.", pron: "sto im-pa-RAN-do li-tal-YA-no", ar: "أنا أتعلم الإيطالية.", priority:"high" },
+  ],
+
+  work: [
+    { it: "Che lavoro fai?", pron: "ke la-VO-ro FAI", ar: "ماذا تعمل؟", priority:"high" },
+    { it: "Cosa fa per vivere?", pron: "KO-za fa per VI-ve-re", ar: "ماذا تفعل لكسب رزقك؟", priority:"high" },
+    { it: "Che tipo di lavoro fai?", pron: "ke TI-po di la-VO-ro FAI", ar: "في أي نوع من الأعمال تعمل؟", priority:"high" },
+    { it: "In quale campo lavori?", pron: "in KWA-le KAM-po la-VO-ri", ar: "في أي مجال تعمل؟", priority:"high" },
+    { it: "Sono un ingegnere.", pron: "SO-no un in-je-NYE-re", ar: "أنا مهندس.", priority:"high" },
+    { it: "Sono un medico.", pron: "SO-no un ME-di-ko", ar: "أنا طبيب.", priority:"high" },
+    { it: "Sono un insegnante.", pron: "SO-no un in-se-NYAN-te", ar: "أنا مدرّس.", priority:"high" },
+    { it: "Lavoro come programmatore.", pron: "la-VO-ro KO-me pro-gram-ma-TO-re", ar: "أعمل كمبرمج.", priority:"high" },
+    { it: "Lavoro in un ufficio.", pron: "la-VO-ro in un uf-FI-cho", ar: "أعمل في مكتب.", priority:"high" },
+    { it: "Lavoro in IT.", pron: "la-VO-ro in ai-ti", ar: "أعمل في تقنية المعلومات.", priority:"high" },
+    { it: "Lavoro da casa.", pron: "la-VO-ro da KA-za", ar: "أعمل من المنزل.", priority:"med" },
+    { it: "Dove lavori?", pron: "DO-ve la-VO-ri", ar: "أين تعمل؟", priority:"high" },
+    { it: "Ho un lavoro a tempo pieno.", pron: "o un la-VO-ro a TEM-po PYER-no", ar: "لديّ عمل بدوام كامل.", priority:"med" },
+    { it: "Ho un lavoro a tempo parziale.", pron: "o un la-VO-ro a TEM-po par-TSYA-le", ar: "لديّ عمل بنصف دوام.", priority:"med" },
+    { it: "Sono disoccupato/a.", pron: "SO-no di-zo-ku-PA-to/a", ar: "أنا عاطل/ة عن العمل.", priority:"med" },
+    { it: "Sto cercando lavoro.", pron: "sto cher-KAN-do la-VO-ro", ar: "أنا أبحث عن عمل.", priority:"med" },
+    { it: "Sono in pensione.", pron: "SO-no in pen-SYO-ne", ar: "أنا متقاعد.", priority:"low" },
+    { it: "Sono un lavoratore autonomo.", pron: "SO-no un la-vo-ra-TO-re aw-TO-no-mo", ar: "أنا صاحب عمل حر.", priority:"med" },
+    { it: "Da quanto tempo lavori qui?", pron: "da KWAN-to TEM-po la-VO-ri KWI", ar: "منذ متى تعمل هنا؟", priority:"high" },
+    { it: "Lavoro qui da 3 anni.", pron: "la-VO-ro KWI da TRE AN-ni", ar: "أعمل هنا منذ 3 سنوات.", priority:"high" },
+    { it: "Sono in esperienza lavorativa.", pron: "SO-no in es-per-YEN-tsa la-vo-ra-TI-va", ar: "أنا في مرحلة اكتساب خبرة.", priority:"med" },
+  ],
+
+  education: [
+    { it: "Sei studente?", pron: "SEI stu-DEN-te", ar: "هل أنت طالب؟", priority:"high" },
+    { it: "Cosa studi?", pron: "KO-za STU-di", ar: "ماذا تدرس؟", priority:"high" },
+    { it: "Dove studi?", pron: "DO-ve STU-di", ar: "أين تدرس؟", priority:"high" },
+    { it: "Studio ingegneria.", pron: "STU-dyo in-je-NYE-RYA", ar: "أدرس الهندسة.", priority:"high" },
+    { it: "Studio medicina.", pron: "STU-dyo me-di-CHI-na", ar: "أدرس الطب.", priority:"high" },
+    { it: "Studio economia.", pron: "STU-dyo e-ko-no-MYA", ar: "أدرس الاقتصاد.", priority:"high" },
+    { it: "Studio informatica.", pron: "STU-dyo in-for-MA-ti-ka", ar: "أدرس علوم الحاسوب.", priority:"high" },
+    { it: "Studio la storia.", pron: "STU-dyo la STO-rya", ar: "أدرس التاريخ.", priority:"med" },
+    { it: "Sono all'università.", pron: "SO-no al-lu-ni-ver-si-TA", ar: "أنا في الجامعة.", priority:"high" },
+    { it: "Sono al primo anno.", pron: "SO-no al PRI-mo AN-no", ar: "أنا في السنة الأولى.", priority:"med" },
+    { it: "Ho una laurea in ...", pron: "o U-na LAW-re-a in...", ar: "لديّ بكالوريوس في ...", priority:"high" },
+    { it: "Ho un master in ...", pron: "o un MAS-ter in...", ar: "لديّ ماجستير في ...", priority:"med" },
+    { it: "Ho finito l'università.", pron: "o fi-NI-to lu-ni-ver-si-TA", ar: "أنهيت الجامعة.", priority:"med" },
+    { it: "Sto studiando per l'esame.", pron: "sto stu-DYAN-do per le-ZA-me", ar: "أنا أدرس للامتحان.", priority:"high" },
+  ],
+
+  family: [
+    { it: "Hai fratelli o sorelle?", pron: "AI fra-TEL-li o so-REL-le", ar: "هل لديك إخوة أو أخوات؟", priority:"high" },
+    { it: "Sì, ho un fratello.", pron: "si, o un fra-TEL-lo", ar: "نعم، لديّ أخ.", priority:"high" },
+    { it: "Sì, ho una sorella.", pron: "si, o u-na so-REL-la", ar: "نعم، لديّ أخت.", priority:"high" },
+    { it: "No, sono figlio/a unico/a.", pron: "no SO-no FIL-yo U-ni-ko", ar: "لا، أنا طفل وحيد.", priority:"med" },
+    { it: "Che lavoro fa tuo padre?", pron: "ke la-VO-ro fa TU-o PA-dre", ar: "ماذا يعمل والدك؟", priority:"high" },
+    { it: "Mio padre è medico.", pron: "MYO PA-dre e ME-di-ko", ar: "والدي طبيب.", priority:"high" },
+    { it: "Dove vivono i tuoi genitori?", pron: "DO-ve VI-vo-no i TU-oi je-ni-TO-ri", ar: "أين يسكن والداك؟", priority:"high" },
+    { it: "Ho [numero] figli.", pron: "o...FIL-yi", ar: "لديّ ... أولاد.", priority:"high" },
+    { it: "Sono sposato/a da 5 anni.", pron: "SO-no spo-ZA-to da CHIN-kwe AN-ni", ar: "أنا متزوج منذ 5 سنوات.", priority:"med" },
+    { it: "La mia famiglia è grande.", pron: "la MYA fa-MIL-ya e GRAN-de", ar: "عائلتي كبيرة.", priority:"med" },
+    { it: "Vivo con la mia famiglia.", pron: "VI-vo kon la MYA fa-MIL-ya", ar: "أسكن مع عائلتي.", priority:"med" },
+    { it: "I tuoi nonni sono ancora in vita?", pron: "i TU-oi NON-ni SO-no an-KO-ra in VI-ta", ar: "هل أجدادك لا يزالون على قيد الحياة؟", priority:"low" },
+  ],
+
+  common: [
+    { it: "Non capisco.", pron: "non ka-PIS-ko", ar: "لا أفهم.", priority:"high" },
+    { it: "Puoi ripetere, per favore?", pron: "PWO-i ri-PE-te-re per fa-VO-re", ar: "هل يمكنك الإعادة من فضلك؟", priority:"high" },
+    { it: "Parla più lentamente, per favore.", pron: "PAR-la pyu len-ta-MEN-te per fa-VO-re", ar: "تكلم ببطء أكثر من فضلك.", priority:"high" },
+    { it: "Come si dice ... in italiano?", pron: "KO-me si DI-che...in i-tal-YA-no", ar: "كيف تقول ... بالإيطالية؟", priority:"high" },
+    { it: "Cosa significa?", pron: "KO-za si-NIF-i-ka", ar: "ماذا يعني هذا؟", priority:"high" },
+    { it: "Sì / No.", pron: "si / no", ar: "نعم / لا.", priority:"high" },
+    { it: "Forse.", pron: "FOR-se", ar: "ربما.", priority:"med" },
+    { it: "Sono d'accordo.", pron: "SO-no da-KOR-do", ar: "أنا موافق.", priority:"high" },
+    { it: "Non sono d'accordo.", pron: "non SO-no da-KOR-do", ar: "أنا لا أوافق.", priority:"med" },
+    { it: "Scusa!", pron: "SKU-za", ar: "آسف! / عذراً!", priority:"high" },
+    { it: "Mi dispiace.", pron: "mi dis-PYA-che", ar: "أنا آسف (مشاعر).", priority:"high" },
+    { it: "Non fa niente.", pron: "non fa NYEN-te", ar: "لا يهم / عادي.", priority:"high" },
+    { it: "Vorrei...", pron: "vo-REI", ar: "أودّ / أريد...", priority:"high" },
+    { it: "Ho bisogno di...", pron: "o bi-ZON-yo di", ar: "أحتاج إلى...", priority:"high" },
+    { it: "Dove si trova...?", pron: "DO-ve si TRO-va", ar: "أين يوجد...؟", priority:"high" },
+    { it: "Quanto costa?", pron: "KWAN-to KOS-ta", ar: "كم يكلّف؟", priority:"med" },
+    { it: "Interessante!", pron: "in-te-res-SAN-te", ar: "مثير للاهتمام!", priority:"med" },
+    { it: "Che bello!", pron: "ke BEL-lo", ar: "ما أجمله!", priority:"med" },
+    { it: "Non lo so.", pron: "non lo so", ar: "لا أعرف.", priority:"high" },
+    { it: "Capisco!", pron: "ka-PIS-ko", ar: "أفهم!", priority:"high" },
+  ],
+
+};
+
+// DIALOGUES
+const dialogues = [
+  {
+    title: "محادثة في المقابلة - التعريف",
+    lines: [
+      { role: "q", it: "Buongiorno! Come si chiama?", pron: "bwon-JOR-no KO-me si KYA-ma", ar: "صباح الخير! ما اسمك؟" },
+      { role: "a", it: "Buongiorno! Mi chiamo Ahmed.", pron: "bwon-JOR-no mi KYA-mo ah-MED", ar: "صباح الخير! اسمي أحمد." },
+      { role: "q", it: "Di dove è?", pron: "di DO-ve E", ar: "من أين أنت؟" },
+      { role: "a", it: "Sono egiziano, vengo dal Cairo.", pron: "SO-no e-dji-TSYA-no VEN-go dal KA-i-ro", ar: "أنا مصري، من القاهرة." },
+      { role: "q", it: "Parla italiano?", pron: "PAR-la i-tal-YA-no", ar: "هل تتكلم إيطالية؟" },
+      { role: "a", it: "Sto imparando. Parlo un po' di italiano.", pron: "sto im-pa-RAN-do PAR-lo un po di i-tal-YA-no", ar: "أنا أتعلم. أتكلم قليلاً من الإيطالية." },
+    ]
+  },
+  {
+    title: "محادثة عن العمل",
+    lines: [
+      { role: "q", it: "Che lavoro fai?", pron: "ke la-VO-ro FAI", ar: "ماذا تعمل؟" },
+      { role: "a", it: "Sono un ingegnere. Lavoro in IT.", pron: "SO-no un in-je-NYE-re la-VO-ro in ai-ti", ar: "أنا مهندس. أعمل في تقنية المعلومات." },
+      { role: "q", it: "Dove lavori?", pron: "DO-ve la-VO-ri", ar: "أين تعمل؟" },
+      { role: "a", it: "Lavoro in un ufficio al Cairo.", pron: "la-VO-ro in un uf-FI-cho al KA-i-ro", ar: "أعمل في مكتب بالقاهرة." },
+      { role: "q", it: "Da quanto tempo lavori lì?", pron: "da KWAN-to TEM-po la-VO-ri LI", ar: "منذ متى تعمل هناك؟" },
+      { role: "a", it: "Lavoro lì da tre anni.", pron: "la-VO-ro LI da TRE AN-ni", ar: "أعمل هناك منذ ثلاث سنوات." },
+    ]
+  },
+  {
+    title: "محادثة عن الدراسة",
+    lines: [
+      { role: "q", it: "Sei studente?", pron: "SEI stu-DEN-te", ar: "هل أنت طالب؟" },
+      { role: "a", it: "Sì, studio informatica all'università.", pron: "si STU-dyo in-for-MA-ti-ka al-lu-ni-ver-si-TA", ar: "نعم، أدرس الحاسوب في الجامعة." },
+      { role: "q", it: "A che anno sei?", pron: "a ke AN-no SEI", ar: "في أي سنة أنت؟" },
+      { role: "a", it: "Sono al terzo anno.", pron: "SO-no al TER-tso AN-no", ar: "أنا في السنة الثالثة." },
+    ]
+  }
+];
+
+// VOCAB DATA
+const vocabData = [
+  {
+    topic: "الأرقام", emoji: "🔢",
+    items: [
+      { it:"uno", pron:"U-no", ar:"واحد", em:"1️⃣" },
+      { it:"due", pron:"DU-e", ar:"اثنان", em:"2️⃣" },
+      { it:"tre", pron:"tre", ar:"ثلاثة", em:"3️⃣" },
+      { it:"quattro", pron:"KWA-tro", ar:"أربعة", em:"4️⃣" },
+      { it:"cinque", pron:"CHIN-kwe", ar:"خمسة", em:"5️⃣" },
+      { it:"dieci", pron:"DYER-chi", ar:"عشرة", em:"🔟" },
+      { it:"venti", pron:"VEN-ti", ar:"عشرون", em:"2️⃣0️⃣" },
+      { it:"cento", pron:"CHEN-to", ar:"مئة", em:"💯" },
+    ]
+  },
+  {
+    topic: "أيام الأسبوع", emoji: "📅",
+    items: [
+      { it:"lunedì", pron:"lu-ne-DI", ar:"الاثنين", em:"1️⃣" },
+      { it:"martedì", pron:"mar-te-DI", ar:"الثلاثاء", em:"2️⃣" },
+      { it:"mercoledì", pron:"mer-ko-le-DI", ar:"الأربعاء", em:"3️⃣" },
+      { it:"giovedì", pron:"jo-ve-DI", ar:"الخميس", em:"4️⃣" },
+      { it:"venerdì", pron:"ve-ner-DI", ar:"الجمعة", em:"5️⃣" },
+      { it:"sabato", pron:"SA-ba-to", ar:"السبت", em:"6️⃣" },
+      { it:"domenica", pron:"do-ME-ni-ka", ar:"الأحد", em:"7️⃣" },
+    ]
+  },
+  {
+    topic: "الطقس", emoji: "🌤",
+    items: [
+      { it:"sole", pron:"SO-le", ar:"شمس", em:"☀️" },
+      { it:"pioggia", pron:"PYO-ja", ar:"مطر", em:"🌧" },
+      { it:"vento", pron:"VEN-to", ar:"ريح", em:"💨" },
+      { it:"neve", pron:"NE-ve", ar:"ثلج", em:"❄️" },
+      { it:"caldo", pron:"KAL-do", ar:"حار", em:"🥵" },
+      { it:"freddo", pron:"FRED-do", ar:"بارد", em:"🥶" },
+      { it:"nuvoloso", pron:"nu-vo-LO-zo", ar:"غائم", em:"☁️" },
+    ]
+  },
+  {
+    topic: "الألوان", emoji: "🎨",
+    items: [
+      { it:"rosso", pron:"ROS-so", ar:"أحمر", em:"🔴" },
+      { it:"verde", pron:"VER-de", ar:"أخضر", em:"🟢" },
+      { it:"blu", pron:"blu", ar:"أزرق", em:"🔵" },
+      { it:"bianco", pron:"BYAN-ko", ar:"أبيض", em:"⬜" },
+      { it:"nero", pron:"NE-ro", ar:"أسود", em:"⬛" },
+      { it:"giallo", pron:"JAL-lo", ar:"أصفر", em:"🟡" },
+      { it:"arancione", pron:"a-ran-CHO-ne", ar:"برتقالي", em:"🟠" },
+    ]
+  },
+  {
+    topic: "الطعام والشراب", emoji: "🍽",
+    items: [
+      { it:"acqua", pron:"AK-kwa", ar:"ماء", em:"💧" },
+      { it:"caffè", pron:"kaf-FE", ar:"قهوة", em:"☕" },
+      { it:"pane", pron:"PA-ne", ar:"خبز", em:"🍞" },
+      { it:"pasta", pron:"PAS-ta", ar:"باستا", em:"🍝" },
+      { it:"pizza", pron:"PIT-sa", ar:"بيتزا", em:"🍕" },
+      { it:"carne", pron:"KAR-ne", ar:"لحم", em:"🥩" },
+      { it:"pesce", pron:"PE-she", ar:"سمك", em:"🐟" },
+      { it:"frutta", pron:"FRUT-ta", ar:"فاكهة", em:"🍎" },
+      { it:"vino", pron:"VI-no", ar:"نبيذ", em:"🍷" },
+      { it:"succo", pron:"SUK-ko", ar:"عصير", em:"🥤" },
+    ]
+  },
+  {
+    topic: "المشاعر", emoji: "😊",
+    items: [
+      { it:"felice", pron:"fe-LI-che", ar:"سعيد", em:"😊" },
+      { it:"triste", pron:"TRIS-te", ar:"حزين", em:"😢" },
+      { it:"arrabbiato", pron:"ar-rab-BYA-to", ar:"غاضب", em:"😠" },
+      { it:"stanco", pron:"STAN-ko", ar:"متعب", em:"😴" },
+      { it:"preoccupato", pron:"pre-ok-ku-PA-to", ar:"قلق", em:"😟" },
+      { it:"sorpreso", pron:"sor-PRE-zo", ar:"متفاجئ", em:"😲" },
+      { it:"contento", pron:"kon-TEN-to", ar:"مسرور", em:"😄" },
+    ]
+  },
+  {
+    topic: "المكان والاتجاهات", emoji: "🗺",
+    items: [
+      { it:"destra", pron:"DES-tra", ar:"يمين", em:"➡️" },
+      { it:"sinistra", pron:"si-NIS-tra", ar:"يسار", em:"⬅️" },
+      { it:"dritto", pron:"DRIT-to", ar:"مباشرة / أمام", em:"⬆️" },
+      { it:"vicino", pron:"vi-CHI-no", ar:"قريب", em:"📍" },
+      { it:"lontano", pron:"lon-TA-no", ar:"بعيد", em:"📍" },
+      { it:"qui", pron:"kwi", ar:"هنا", em:"👇" },
+      { it:"là", pron:"la", ar:"هناك", em:"👉" },
+    ]
+  },
+  {
+    topic: "الوقت", emoji: "⏰",
+    items: [
+      { it:"oggi", pron:"OJ-ji", ar:"اليوم", em:"📆" },
+      { it:"ieri", pron:"YE-ri", ar:"أمس", em:"◀️" },
+      { it:"domani", pron:"do-MA-ni", ar:"غداً", em:"▶️" },
+      { it:"adesso", pron:"a-DES-so", ar:"الآن", em:"⏱" },
+      { it:"mattina", pron:"mat-TI-na", ar:"صباح", em:"🌅" },
+      { it:"pomeriggio", pron:"po-me-RIJ-jo", ar:"بعد الظهر", em:"🌞" },
+      { it:"sera", pron:"SE-ra", ar:"مساء", em:"🌆" },
+      { it:"notte", pron:"NOT-te", ar:"ليل", em:"🌙" },
+    ]
+  },
+];
+
+// ============================================================
+// QUIZ DATA (flat list)
+// ============================================================
+const quizItems = [];
+Object.values(data).flat().forEach(d => {
+  if(d.it && d.ar) quizItems.push({ it: d.it.replace(/[?!]/g,''), ar: d.ar });
+});
+vocabData.forEach(sec => sec.items.forEach(v => quizItems.push({ it: v.it, ar: v.ar })));
+
+// ============================================================
+// SPEECH
+// ============================================================
+function speak(text, btn) {
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+    const utt = new SpeechSynthesisUtterance(text);
+    utt.lang = 'it-IT';
+    utt.rate = 0.85;
+
+    if (btn) {
+      btn.classList.add('speaking');
+      utt.onend = () => btn.classList.remove('speaking');
+      utt.onerror = () => btn.classList.remove('speaking');
+    }
+    window.speechSynthesis.speak(utt);
+  }
+}
+
+// ============================================================
+// RENDER CARDS
+// ============================================================
+let favorites = JSON.parse(localStorage.getItem('italianFavs') || '[]');
+let favCount = favorites.length;
+
+function saveFavs() {
+  localStorage.setItem('italianFavs', JSON.stringify(favorites));
+  updateProgress();
+}
+
+function updateProgress() {
+  const pct = Math.min(100, Math.round((favorites.length / 50) * 100));
+  document.getElementById('globalProgress').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = favorites.length + ' كلمة محفوظة';
+}
+
+function renderCards(items, containerId) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = items.map((item, i) => {
+    const key = item.it;
+    const isFav = favorites.includes(key);
+    return `
+    <div class="phrase-card" style="--accent:${item.priority==='high'?'var(--red)':item.priority==='med'?'var(--gold)':'var(--green)'}">
+      <div class="card-priority ${item.priority==='high'?'priority-high':item.priority==='med'?'priority-med':'priority-low'}">
+        ${item.priority==='high'?'⭐ أولوية عالية':item.priority==='med'?'🔶 مهم':'🔹 مفيد'}
+      </div>
+      <div class="card-italian">${item.it}</div>
+      <div class="card-pronunciation">[ ${item.pron} ]</div>
+      <div class="card-arabic">${item.ar}</div>
+      <div class="card-actions">
+        <button class="speak-btn" id="sbtn_${containerId}_${i}" onclick="speak('${item.it.replace(/'/g,"\\'")}', this)">
+          🔊 استمع
+        </button>
+        <button class="fav-btn ${isFav?'active':''}" onclick="toggleFav('${key.replace(/'/g,"\\'")}', this)" title="احفظ">♥</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleFav(key, btn) {
+  const idx = favorites.indexOf(key);
+  if (idx > -1) {
+    favorites.splice(idx, 1);
+    btn.classList.remove('active');
+  } else {
+    favorites.push(key);
+    btn.classList.add('active');
+  }
+  saveFavs();
+}
+
+// ============================================================
+// RENDER DIALOGUES
+// ============================================================
+function renderDialogues() {
+  const el = document.getElementById('dialogues');
+  el.innerHTML = dialogues.map((d, di) => `
+    <div class="dialogue-card">
+      <div class="dialogue-title">💬 ${d.title}</div>
+      ${d.lines.map((l, li) => `
+        <div class="dialogue-line ${l.role}">
+          <span class="line-role ${l.role==='q'?'role-q':'role-a'}">${l.role==='q'?'سؤال':'جواب'}</span>
+          <div class="line-content">
+            <div class="line-italian">${l.it}</div>
+            <div class="line-pron">[ ${l.pron} ]</div>
+            <div class="line-arabic">${l.ar}</div>
+          </div>
+          <button class="line-speak" id="dlg_${di}_${li}" onclick="speak('${l.it.replace(/'/g,"\\'")}', this)">🔊</button>
+        </div>
+      `).join('')}
+    </div>
+  `).join('');
+}
+
+// ============================================================
+// RENDER VOCAB
+// ============================================================
+function renderVocab(filter='') {
+  const el = document.getElementById('vocabSections');
+  const fl = filter.toLowerCase();
+  el.innerHTML = vocabData.map(sec => {
+    const filteredItems = sec.items.filter(v =>
+      !fl || v.it.toLowerCase().includes(fl) || v.ar.includes(fl) || v.pron.toLowerCase().includes(fl)
+    );
+    if (!filteredItems.length) return '';
+    return `
+    <div class="vocab-section">
+      <div class="vocab-title"><span>${sec.emoji}</span> ${sec.topic}</div>
+      <div class="vocab-grid" id="vgrid_${sec.topic}">
+        ${filteredItems.map((v, i) => `
+          <div class="vocab-item">
+            <button class="vocab-speak" id="vsb_${sec.topic}_${i}" onclick="speak('${v.it.replace(/'/g,"\\'")}', this)">🔊</button>
+            <span class="vocab-emoji">${v.em}</span>
+            <div class="vocab-text">
+              <div class="vocab-it">${v.it}</div>
+              <div class="vocab-pron">[ ${v.pron} ]</div>
+              <div class="vocab-ar">${v.ar}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filterVocab(val) { renderVocab(val); }
+
+// ============================================================
+// QUIZ LOGIC
+// ============================================================
+let quizState = { score:0, total:0, streak:0, current:null, answered:false };
+
+function shuffle(arr) { return [...arr].sort(() => Math.random()-0.5); }
+
+function nextQuestion() {
+  quizState.answered = false;
+  const item = quizItems[Math.floor(Math.random() * quizItems.length)];
+  quizState.current = item;
+
+  document.getElementById('quizQ').textContent = item.it;
+  document.getElementById('quizNext').textContent = '⏭ سؤال التالي';
+
+  // Generate 4 options
+  const wrong = shuffle(quizItems.filter(q => q.ar !== item.ar)).slice(0,3).map(q => q.ar);
+  const opts = shuffle([item.ar, ...wrong]);
+
+  document.getElementById('quizOptions').innerHTML = opts.map(opt => `
+    <button class="quiz-opt" onclick="checkAnswer('${opt.replace(/'/g,"\\'")}', '${item.ar.replace(/'/g,"\\'")}', this)">${opt}</button>
+  `).join('');
+}
+
+function checkAnswer(chosen, correct, btn) {
+  if (quizState.answered) return;
+  quizState.answered = true;
+  quizState.total++;
+
+  const opts = document.querySelectorAll('.quiz-opt');
+  opts.forEach(o => {
+    o.onclick = null;
+    if (o.textContent === correct) o.classList.add('correct');
+  });
+
+  if (chosen === correct) {
+    quizState.score++;
+    quizState.streak++;
+    btn.classList.add('correct');
+  } else {
+    quizState.streak = 0;
+    btn.classList.add('wrong');
+  }
+
+  document.getElementById('qScore').textContent = quizState.score;
+  document.getElementById('qTotal').textContent = quizState.total;
+  document.getElementById('qStreak').textContent = quizState.streak;
+
+  speak(quizState.current.it);
+}
+
+let quizWord = '';
+function speakQuizWord() {
+  if (quizState.current) speak(quizState.current.it);
+}
+
+// ============================================================
+// TABS
+// ============================================================
+function showSection(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  btn.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
+}
+
+// ============================================================
+// INIT
+// ============================================================
+renderCards(data.greetings, 'greetingsGrid');
+renderCards(data.greetingsExtra, 'greetingsExtra');
+renderCards(data.intro, 'introGrid');
+renderCards(data.work, 'workGrid');
+renderCards(data.education, 'educationGrid');
+renderCards(data.family, 'familyGrid');
+renderCards(data.common, 'commonGrid');
+renderDialogues();
+renderVocab();
+updateProgress();
+</script>
+</body>
+</html>
